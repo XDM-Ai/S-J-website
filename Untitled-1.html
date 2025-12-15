@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slime & Johnny Solar Solutions</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:"Poppins",sans-serif;
+    }
+
+    body{
+      background:#f8f9f8;
+      color:#222;
+      line-height:1.5;
+    }
+
+    /* ---------------- HEADER ---------------- */
+    header{
+      background:#0b3d2e;
+      color:#fff;
+      padding:1rem 5%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    header h1{
+      font-size:1.4rem;
+      font-weight:600;
+    }
+
+    nav button{
+      background:#8000ff;
+      color:#fff;
+      border:none;
+      padding:0.8rem 2rem;
+      font-weight:600;
+      cursor:pointer;
+      border-radius:5px;
+    }
+
+    /* ---------------- HERO ---------------- */
+    .hero{
+      background:url(IMG_6676.JPG) center/cover no-repeat;
+      color:#fff;
+      text-align:center;
+      padding:7rem 1rem;
+      position:relative;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.55);
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+    }
+    .hero h2{
+      font-size:2.5rem;
+      margin-bottom:1rem;
+    }
+    .hero p{
+      font-size:1.2rem;
+      margin-bottom:2rem;
+    }
+    .hero button{
+      background:#ffd700;
+      border:none;
+      padding:0.8rem 2rem;
+      font-weight:600;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    /* ---------------- SECTIONS ---------------- */
+    .about,
+    .services,
+    .contact{
+      padding:4rem 5%;
+    }
+
+    .about h3,
+    .services h3{
+      font-size:1.8rem;
+      color:#0b3d2e;
+      text-align:center;
+      margin-bottom:1rem;
+    }
+
+    .about p{
+      max-width:700px;
+      margin:auto;
+      text-align:center;
+    }
+
+    /* ---------------- SERVICES ---------------- */
+    .services{
+      background:#ecf7f1;
+    }
+
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:2rem;
+      margin-top:2rem;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      overflow:hidden;
+    }
+
+    .card img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+    }
+
+    .card h4{
+      color:#0b3d2e;
+      margin:1rem;
+    }
+
+    .card p{
+      padding:0 1rem 1.5rem;
+      font-size:0.95rem;
+    }
+
+    /* ---------------- CONTACT ---------------- */
+    .contact h1{
+      text-align:center;
+      color:#0b3d2e;
+      margin-bottom:1rem;
+    }
+
+    .contact .intro{
+      text-align:center;
+      max-width:700px;
+      margin:0 auto 2.5rem;
+    }
+
+    #contact-form{
+      max-width:900px;
+      margin:auto;
+      background:#fff;
+      padding:2rem;
+      border-radius:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    fieldset{
+      display:flex;
+      flex-wrap:wrap;
+      gap:1.2rem;
+      border:none;
+    }
+
+    .info-group{
+      flex:1 1 250px;
+      display:flex;
+      flex-direction:column;
+      gap:0.5rem;
+    }
+
+    .message-group{
+      flex:2 1 350px;
+      display:flex;
+      flex-direction:column;
+      gap:0.5rem;
+    }
+
+    label{
+      font-weight:500;
+      color:#0b3d2e;
+    }
+
+    input,
+    textarea{
+      padding:0.6rem;
+      font-size:1rem;
+      border-radius:6px;
+      border:1px solid #ccc;
+    }
+
+    textarea{
+      min-height:140px;
+      resize:vertical;
+      background:#fff;
+      color:#222;
+    }
+
+    textarea:focus,
+    input:focus{
+      outline:none;
+      border-color:#007bff;
+      box-shadow:0 0 0 2px rgba(0,123,255,0.25);
+    }
+
+    .btn{
+      margin-top:1rem;
+      background:#007bff;
+      color:#fff;
+      border:none;
+      padding:0.7rem 1.5rem;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    .form-status{
+      margin-top:1rem;
+      font-size:0.95rem;
+      display:none;
+    }
+
+    .form-status.success{
+      color:green;
+    }
+
+    .form-status.error{
+      color:red;
+    }
+
+    /* ---------------- CTA ---------------- */
+    .cta{
+      background:#0b3d2e;
+      color:#fff;
+      text-align:center;
+      padding:3rem 1rem;
+    }
+
+    .cta button{
+      background:#ffd700;
+      border:none;
+      padding:0.9rem 2rem;
+      font-weight:600;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+    footer{
+      background:#05281c;
+      color:#ccc;
+      text-align:center;
+      padding:1.5rem;
+      font-size:0.9rem;
+    }
+
+    @media (max-width:600px){
+      fieldset{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>⚡ Slime & Johnny Solar Solutions</h1>
+  <nav>
+    <button class="request-btn">Request Installation</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>Powering Your World with Clean Energy</h2>
+    <p>Reliable solar panels, smart batteries, and expert installation.</p>
+    <button class="request-btn">Request Installation</button>
+  </div>
+</section>
+
+<section class="about">
+  <h3>About Us</h3>
+  <p>
+    We provide efficient, sustainable solar solutions for homes and businesses,
+    combining modern technology with eco-friendly designs.
+  </p>
+</section>
+
+<section class="services">
+  <h3>Our Services</h3>
+  <div class="service-grid">
+    <div class="card">
+      <img src="IMG_6677.JPG" alt="">
+      <h4>Solar Panel Installation</h4>
+      <p>Professional setup of durable, high-efficiency panels.</p>
+    </div>
+    <div class="card">
+      <img src="battery.jpg" alt="">
+      <h4>Battery Systems</h4>
+      <p>Advanced lithium battery solutions for energy storage.</p>
+    </div>
+    <div class="card">
+      <img src="d7c74fe2099181b001891681f03a1df1.jpg" alt="">
+      <h4>Consultation</h4>
+      <p>Expert advice to design the perfect solar system.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h1>Contact Us</h1>
+  <p class="intro">
+    Have questions or ready to get started? Send us a message below.
+  </p>
+
+  <form id="contact-form">
+    <fieldset>
+      <div class="info-group">
+        <label>Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Phone</label>
+        <input type="tel" name="phone">
+      </div>
+
+      <div class="message-group">
+        <label>Message</label>
+        <textarea name="message" required></textarea>
+      </div>
+
+      <button type="submit" class="btn">Send Message</button>
+    </fieldset>
+
+    <div class="form-status success" id="success-msg">
+      ✅ Message sent successfully. We’ll contact you shortly.
+    </div>
+    <div class="form-status error" id="error-msg">
+      ❌ Something went wrong. Please try again.
+    </div>
+  </form>
+</section>
+
+<section class="cta">
+  <h3>Ready to Switch to Solar?</h3>
+  <button class="request-btn">Request Installation</button>
+</section>
+
+<footer>
+  <p>&copy; 2025 Slime & Johnny Solar Solutions</p>
+</footer>
+
+<script>
+  /* -------- EMAILJS INIT -------- */
+  emailjs.init("YOUR_PUBLIC_KEY"); // 🔁 replace
+
+  /* -------- WHATSAPP BUTTONS -------- */
+  document.querySelectorAll('.request-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const phone = '2349031610249';
+      const msg = encodeURIComponent(
+        'Hello! I’d like to request a solar installation.'
+      );
+      window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+    });
+  });
+
+  /* -------- CONTACT FORM -------- */
+  const form = document.getElementById('contact-form');
+  const successMsg = document.getElementById('success-msg');
+  const errorMsg = document.getElementById('error-msg');
+
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+
+    emailjs.sendForm(
+      'YOUR_SERVICE_ID',   // 🔁 replace
+      'YOUR_TEMPLATE_ID',  // 🔁 replace
+      form
+    ).then(()=>{
+      successMsg.style.display = 'block';
+      form.reset();
+    }).catch(()=>{
+      errorMsg.style.display = 'block';
+    });
+  });
+</script>
+
+</body>
+</html>
