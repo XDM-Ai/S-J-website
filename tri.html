@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slime & Johnny Solar Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:"Poppins",sans-serif;
+    }
+
+    body{
+      background:#f8f9f8;
+      color:#222;
+      line-height:1.5;
+    }
+
+    header{
+      background:#0b3d2e;
+      color:#fff;
+      padding:1rem 5%;      
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    header h1{
+      font-size:1.4rem;
+      font-weight:600;
+    }
+
+    nav button{
+      color:#252525;
+      margin-left:1rem;
+      text-decoration:none;
+      background:#8000ff;
+      border:none;
+      padding:0.8rem 2rem;
+      font-weight:600;
+      cursor:pointer;
+      border-radius:5px;
+    }
+
+    nav a{
+      color:#fffbfb;
+      margin-left:1rem;
+      text-decoration:none;
+      background:#8000ff;
+      border:none;
+      padding:0.8rem 2rem;
+      font-weight:600;
+      cursor:pointer;
+      border-radius:5px;
+    }
+
+    nav a:hover{
+      color:#ffd700;
+    }
+
+    .hero{
+      background:url(IMG_6676.JPG);
+      background-size: cover;
+      background-repeat: no-repeat;
+      color:#fff;
+      text-align:center;
+      padding:7rem 1rem;
+      position:relative;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0; bottom:0;
+      background:rgba(0,0,0,0.55);
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+    }
+    .hero h2{
+      font-size:2.5rem;
+      margin-bottom:1rem;
+    }
+    .hero p{
+      font-size:1.2rem;
+      margin-bottom:2rem;
+    }
+    .hero button{
+      background:#ffd700;
+      border:none;
+      padding:0.8rem 2rem;
+      font-weight:600;
+      cursor:pointer;
+      border-radius:5px;
+    }
+    .hero button:hover{
+      background:#f1c40f;
+    }
+
+    .about{
+      padding:4rem 5%;
+      text-align:center;
+    }
+    .about h3{
+      font-size:1.8rem;
+      margin-bottom:1rem;
+      color:#0b3d2e;
+    }
+    .about p{
+      max-width:700px;
+      margin:auto;
+      font-size:1rem;
+    }
+
+    .services{
+      background:#ecf7f1;
+      padding:4rem 5%;
+      text-align:center;
+    }
+    .services h3{
+      font-size:1.8rem;
+      color:#0b3d2e;
+      margin-bottom:2rem;
+    }
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:2rem;
+    }
+    .card{
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      overflow:hidden;
+      transition:transform .3s;
+    }
+    .card:hover{
+      transform:translateY(-5px);
+    }
+    .card img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+    }
+    .card h4{
+      color:#0b3d2e;
+      margin:1rem 0 0.5rem;
+      padding:0 1rem;
+    }
+    .card p{
+      padding:0 1rem 1.5rem;
+      font-size:0.95rem;
+    }
+
+    /* --------- contact section ---------- */
+    .contact{
+      padding:3rem 5%;
+      background:#fff;
+    }
+    .contact h1{
+      font-size:1.8rem;
+      color:#0b3d2e;
+      margin-bottom:1rem;
+      text-align:center;
+    }
+    .contact p.intro{
+      max-width:700px;
+      margin:auto 0 2rem;
+      text-align:center;
+      font-size:1rem;
+    }
+    /* container layout */
+    #contact-form{
+      max-width:900px;
+      margin:auto;
+    }
+    #contact-form fieldset {
+      display: flex;
+      flex-wrap: wrap;          /* allow items to flow on smaller screens */
+      gap: 1rem;                /* space between columns and rows */
+      border: none;             /* hide default fieldset border */
+      padding: 0;
+      margin: 0;
+    }
+
+    /* left column: stacked inputs */
+    .info-group {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 240px;          /* take available space, min width ~240px */
+      gap: 0.5rem;
+    }
+
+    /* right column: message area */
+    .message-group {
+      display: flex;
+      flex-direction: column;
+      flex: 2 1 360px;          /* wider than info-group */
+      gap: 0.5rem;
+    }
+
+    /* make labels and fields full width in their column */
+    .info-group label,
+    .message-group label,
+    .info-group input,
+    .message-group textarea {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* label styling */
+    .info-group label,
+    .message-group label {
+      font-weight:500;
+      font-size:0.95rem;
+      color:#0b3d2e;
+    }
+
+    /* inputs */
+    #contact-form input{
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    /* textarea: better contrast & readability */
+    #contact-form textarea {
+      border: 1px solid #ccc;      /* subtle border */
+      background: #fff;            /* white background for clear contrast */
+      color: #222;                 /* dark text */
+      border-radius: 8px;
+      padding: 0.6rem;
+      font-size: 1rem;
+      resize: vertical;            /* allow vertical resize only */
+      min-height:120px;
+    }
+
+    #contact-form textarea::placeholder {
+      color: #888;                 /* softer placeholder color */
+    }
+
+    #contact-form textarea:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow:0 0 0 2px rgba(0,123,255,0.25);
+    }
+
+    /* submit button */
+    #contact-form .btn {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background: #007bff;
+      color: white;
+      align-self:flex-start; /* keep button left in two-column layout */
+    }
+
+    /* responsive: stack everything on very small screens */
+    @media (max-width: 600px) {
+      #contact-form fieldset {
+        flex-direction: column;
+      }
+    }
+
+    /* --------- call to action ---------- */
+    .cta{
+      background:#0b3d2e;
+      color:#fff;
+      text-align:center;
+      padding:3rem 1rem;
+    }
+    .cta h3{
+      font-size:1.8rem;
+      margin-bottom:1rem;
+    }
+
+    .cta button{
+      background:#ffd700;
+      border:none;
+      padding:0.9rem 2rem;
+      font-weight:600;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    .cta button:hover{
+      background:#f1c40f;
+    }
+
+    footer{
+      background:#05281c;
+      color:#ccc;
+      text-align:center;
+      padding:1.5rem;
+      font-size:0.9rem;
+    }
+    footer a{
+      color:#ffd700;
+      text-decoration:none;
+      margin:0 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1> ⚡Slime & Johnny Solar Solutions</h1>
+    <nav>
+      <button>Request Installation</button>
+      <!-- <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a> -->
+    </nav> 
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Powering Your World with Clean Energy</h2>
+      <p>Reliable solar panels, smart batteries, and expert installation — all in one place.</p>
+      <button>Request Installation</button>
+    </div>
+  </section>
+
+  <section class="about">
+    <h3>About Us</h3>
+    <p>Slime & Johnny Solar Solutions is dedicated to providing efficient, sustainable energy for homes and businesses. 
+      We combine modern technology with eco-friendly designs to deliver systems that last.</p>
+  </section>
+
+  <section class="services">
+    <h3>Our Services</h3>
+    <div class="service-grid">
+      <div class="card">
+        <img src="IMG_6677.JPG" alt="">
+        <h4>Solar Panel Installation</h4>
+        <p>Professional setup of durable, high-efficiency panels suited for any environment.</p>
+      </div>
+      <div class="card">
+        <img src="battery.jpg" alt="">
+        <h4>Battery Systems</h4>
+        <p>Keep your energy stored safely with our advanced lithium battery solutions.</p>
+      </div>
+      <div class="card">
+        <img src="d7c74fe2099181b001891681f03a1df1.jpg" alt="Consultation">
+        <h4>Consultation</h4>
+        <p>Speak with our solar experts to discover the system that fits your lifestyle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h1>Contact Us</h1>
+    <p class="intro">Have questions or ready to get started? Reach out via the form below or message us directly on WhatsApp.</p>
+
+    <form id="contact-form">
+      <fieldset>
+        <div class="info-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" />
+        </div>
+
+        <div class="message-group">
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Type your message here..."></textarea>
+        </div>
+
+        <button type="submit" class="btn">Submit</button>
+      </fieldset>
+    </form>
+
+    <p style="text-align:center; margin-top:1.5rem;">
+      Or chat with us directly on <a href="https://wa.me/2349031610249" target="_blank">WhatsApp</a>.
+    </p>
+  </section>
+
+  <section class="cta">
+    <h3>Ready to Switch to Solar?</h3>
+    <button>Request Installation</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Slime & Johnny Solar Solutions | All Rights Reserved</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </footer>
+
+  <script>
+    // WhatsApp integration for Request Installation buttons
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const text = this.textContent.trim();
+        if (text === 'Request Installation') {
+          // Prevent default if any (e.g., if inside form)
+          e.preventDefault();
+          const phoneNumber = '2349031610249'; // your WhatsApp number
+          const message = encodeURIComponent('Hello! I’d like to request a solar installation.');
+          window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        }
+      });
+    });
+
+    // Basic form submission handler (for future email integration)
+    const form = document.querySelector('#contact-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you! Your request has been submitted.');
+        form.reset();
+      });
+    }
+  </script>
+</body>
+</html>
