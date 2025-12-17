@@ -9,6 +9,7 @@
 
   <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"</script>
 
   <style>
     *{
@@ -431,7 +432,7 @@ textarea:focus {
 
 <script>
   /* -------- EMAILJS INIT -------- */
-  emailjs.init("YOUR_PUBLIC_KEY"); // 🔁 replace
+  emailjs.init("6x-5H1KA2n6fUI-_4"); // 🔁 replace
 
   /* -------- WHATSAPP BUTTONS -------- */
   document.querySelectorAll('.request-btn').forEach(btn=>{
@@ -455,8 +456,8 @@ textarea:focus {
     errorMsg.style.display = 'none';
 
     emailjs.sendForm(
-      'YOUR_SERVICE_ID',   // 🔁 replace
-      'YOUR_TEMPLATE_ID',  // 🔁 replace
+     "service_j7dmwi9",   // 🔁 replace
+     "ejs-test-mail-service",  // 🔁 replace
       form
     ).then(()=>{
       successMsg.style.display = 'block';
@@ -465,8 +466,6 @@ textarea:focus {
       errorMsg.style.display = 'block';
     });
   });
-
- /* <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"> */
 
   // 🔐 Initialize EmailJS
   (function () {
@@ -485,6 +484,7 @@ textarea:focus {
     emailjs.sendForm(
       "service_j7dmwi9",   // ⬅️ replace this
       "ejs-test-mail-service",  // ⬅️ replace this
+      form
     )
     .then(() => {
       status.textContent = "Message sent successfully!";
@@ -502,4 +502,5 @@ textarea:focus {
 
 </body>
 </html>
+
 
