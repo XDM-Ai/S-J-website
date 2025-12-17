@@ -470,7 +470,7 @@ textarea:focus {
 
   // 🔐 Initialize EmailJS
   (function () {
-    emailjs.init("YOUR_PUBLIC_KEY"); // ⬅️ replace this
+    emailjs.init("6x-5H1KA2n6fUI-_4"); // ⬅️ replace this
   })();
 
   const form = document.getElementById("contact-form");
@@ -483,9 +483,8 @@ textarea:focus {
     status.style.color = "#555";
 
     emailjs.sendForm(
-      "YOUR_SERVICE_ID",   // ⬅️ replace this
-      "YOUR_TEMPLATE_ID",  // ⬅️ replace this
-      this
+      "service_j7dmwi9",   // ⬅️ replace this
+      "ejs-test-mail-service",  // ⬅️ replace this
     )
     .then(() => {
       status.textContent = "Message sent successfully!";
@@ -503,3 +502,4 @@ textarea:focus {
 
 </body>
 </html>
+
