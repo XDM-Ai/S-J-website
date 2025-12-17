@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Slime & Johnny Solar Solutions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function(){
+  emailjs.init("6x-5H1KA2n6fUI-_4");
+})();
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+body{background:#f8f9f8;color:#222;}
+
+header{background:#0b3d2e;color:#fff;padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;}
+header h1{font-size:1.4rem;}
+
+.hero{background:#000;color:#fff;text-align:center;padding:6rem 1rem;}
+.hero button{background:#ffd700;border:none;padding:0.8rem 2rem;border-radius:5px;font-weight:600;cursor:pointer;}
+
+section.Contact{padding:4rem 5%;background:#f9fdfb;}
+.Contact h1{color:#0b3d2e;margin-bottom:1rem;}
+
+#contact-form fieldset{display:flex;gap:1.5rem;border:none;}
+.info-group{flex:1;display:flex;flex-direction:column;gap:0.7rem;}
+.message-group{flex:1.5;display:flex;flex-direction:column;}
+
+input,textarea{
+  padding:0.7rem;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:1rem;
+}
+
+textarea{min-height:160px;resize:vertical;}
+
+.btn{
+  margin-top:1rem;
+  background:#0b3d2e;
+  color:#fff;
+  padding:0.8rem;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* SUCCESS ANIMATION */
+.success-message{
+  display:none;
+  margin-top:1rem;
+  padding:1rem;
+  background:#e6f7f0;
+  color:#0b3d2e;
+  border-radius:6px;
+  animation:fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+@media(max-width:700px){
+  #contact-form fieldset{flex-direction:column;}
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+<h2>Powering Your World with Clean Energy</h2>
+<button id="installBtn">Request Installation</button>
+</section>
+
+<section class="Contact">
+<h1>Contact Us</h1>
+
+<form id="contact-form">
+<fieldset>
+<div class="info-group">
+<input type="text" name="user_name" placeholder="Your Name" required>
+<input type="email" name="user_email" placeholder="Your Email" required>
+<input type="tel" name="user_phone" placeholder="Phone Number">
+</div>
+
+<div class="message-group">
+<textarea name="message" placeholder="Your Message" required></textarea>
+</div>
+</fieldset>
+
+<button type="submit" class="btn">Send Message</button>
+<div class="success-message" id="successMsg">
+✅ Message sent successfully! We’ll contact you shortly.
+</div>
+</form>
+</section>
+
+<script>
+// WhatsApp button
+document.getElementById("installBtn").onclick = () => {
+  window.open(
+    "https://wa.me/2349031610249?text=Hello! I’d like to request a solar installation.",
+    "_blank"
+  );
+};
+
+// FORM SUBMISSION
+const form = document.getElementById("contact-form");
+const successMsg = document.getElementById("successMsg");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  // EMAIL TO CLIENT
+  emailjs.sendForm(
+    "service_j7dmwi9",
+    "__ejs-test-mail-service__",
+    this
+  );
+
+  // AUTO-REPLY TO CUSTOMER
+  emailjs.sendForm(
+    "service_j7dmwi9",
+    "auto_reply_template",
+    this
+  );
+
+  // WHATSAPP NOTIFICATION TO CLIENT
+  const msg = `New Solar Request:%0AName: ${form.user_name.value}%0AEmail: ${form.user_email.value}%0APhone: ${form.user_phone.value}%0AMessage: ${form.message.value}`;
+  window.open(`https://wa.me/2349031610249?text=${msg}`, "_blank");
+
+  successMsg.style.display = "block";
+  form.reset();
+});
+</script>
+
+</body>
+</html>
