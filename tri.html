@@ -306,6 +306,23 @@
       text-decoration:none;
       margin:0 0.5rem;
     }
+    .whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1000;
+}
+
+.whatsapp-float img {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-float img:hover {
+  transform: scale(1.08);
+}
   </style>
 </head>
 <body>
@@ -372,8 +389,14 @@
         </div>
 
         <div class="message-group">
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="5" required placeholder="Type your message here..."></textarea>
+         <a
+  href="https://wa.me/2349031610249?text=Hello!%20I%20would%20like%20to%20inquire%20about%20solar%20installation."
+  class="whatsapp-float"
+  target="_blank"
+  aria-label="Chat on WhatsApp"
+>
+  <img src="whatsapp.png" alt="WhatsApp Chat">
+</a>
         </div>
 
         <button type="submit" class="btn">Submit</button>
@@ -419,7 +442,19 @@
         form.reset();
       });
     }
+    const name = form.name.value;
+const message = form.message.value;
+
+const whatsappText = encodeURIComponent(
+  `Hello, my name is ${name}. ${message}`
+);
+
+window.open(
+  `https://wa.me/2349031610249?text=${whatsappText}`,
+  "_blank"
+);
   </script>
 </body>
 
 </html>
+
